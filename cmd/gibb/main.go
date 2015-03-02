@@ -1,20 +1,21 @@
+// Copyright (c) 2015, Ben Morgan. All rights reserved.
+// Use of this source code is governed by an MIT license
+// that can be found in the LICENSE file.
+
 // Command gibberize goes through all files in the current directory,
 // and replaces their contents with meaningless text.
 package main
 
 import (
 	"fmt"
-	"os"
 
+	"github.com/cassava/gibberish"
 	flag "github.com/ogier/pflag"
 )
 
 var (
-	force   = flag.BoolP("f", "force", false, "overwrite existing files")
-	recurse = flag.BoolP("r", "recurse", false, "recurse into directories")
-
-	mean      = flag.BoolP("m", "mean", 10, "mean number of lines")
-	deviation = flag.BoolP("s", "deviation", 5, "standard deviation")
+	force   = flag.BoolP("force", "f", false, "overwrite existing files")
+	recurse = flag.BoolP("recurse", "r", false, "recurse into directories")
 )
 
 func help() {
@@ -27,9 +28,6 @@ Gibberize creates files filled with gibberish for test purposes.
 func main() {
 	flag.Parse()
 
-	if flag.NArg() == 0 {
-		help()
-		os.Exit(1)
-	}
-
+	g := gibberish.NewGenerator()
+	fmt.Println(g.Document())
 }

@@ -1,3 +1,7 @@
+// Copyright (c) 2015, Ben Morgan. All rights reserved.
+// Use of this source code is governed by an MIT license
+// that can be found in the LICENSE file.
+
 package gibberish
 
 import (
@@ -25,9 +29,9 @@ func NewNormal(mean, standardDeviation float64) *Normal {
 
 func (n *Normal) Sample() int {
 	s := n.Rand.NormFloat64()*n.SD + n.M
-	n := int(s)
-	if n <= 0 {
+	m := int(s)
+	if m <= 0 {
 		return 0
 	}
-	return n
+	return m
 }
